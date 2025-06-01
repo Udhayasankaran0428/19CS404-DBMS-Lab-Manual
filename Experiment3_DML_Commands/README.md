@@ -1,169 +1,112 @@
-# Experiment 3: DML Commands
+# Experiment 1: Entity-Relationship (ER) Diagram
 
-## AIM
-To study and implement DML (Data Manipulation Language) commands.
+## 🎯 Objective:
+To understand and apply the concepts of ER modeling by creating an ER diagram for a real-world application.
 
-## THEORY
+## 📚 Purpose:
+The purpose of this workshop is to gain hands-on experience in designing ER diagrams that visually represent the structure of a database including entities, relationships, attributes, and constraints.
 
-### 1. INSERT INTO
-Used to add records into a relation.
-These are three type of INSERT INTO queries which are as
-A)Inserting a single record
-**Syntax (Single Row):**
-```sql
-INSERT INTO table_name (field_1, field_2, ...) VALUES (value_1, value_2, ...);
-```
-**Syntax (Multiple Rows):**
-```sql
-INSERT INTO table_name (field_1, field_2, ...) VALUES
-(value_1, value_2, ...),
-(value_3, value_4, ...);
-```
-**Syntax (Insert from another table):**
-```sql
-INSERT INTO table_name SELECT * FROM other_table WHERE condition;
-```
-### 2. UPDATE
-Used to modify records in a relation.
-Syntax:
-```sql
-UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
-```
-### 3. DELETE
-Used to delete records from a relation.
-**Syntax (All rows):**
-```sql
-DELETE FROM table_name;
-```
-**Syntax (Specific condition):**
-```sql
-DELETE FROM table_name WHERE condition;
-```
-### 4. SELECT
-Used to retrieve records from a table.
-**Syntax:**
-```sql
-SELECT column1, column2 FROM table_name WHERE condition;
-```
-**Question 1**
---
--- Paste Question 1 here
-
-```sql
--- Paste your SQL code below for Question 1
-```
-
-**Output:**
-
-![Output1](output.png)
-
-**Question 2**
 ---
--- Paste Question 2 here
 
-```sql
--- Paste your SQL code below for Question 2
-```
+## 🧪 Choose One Scenario:
 
-**Output:**
+### 🔹 Scenario 1: University Database
+Design a database to manage students, instructors, programs, courses, and student enrollments. Include prerequisites for courses.
 
-![Output2](output.png)
+**User Requirements:**
+- Academic programs grouped under departments.
+- Students have admission number, name, DOB, contact info.
+- Instructors with staff number, contact info, etc.
+- Courses have number, name, credits.
+- Track course enrollments by students and enrollment date.
+- Add support for prerequisites (some courses require others).
 
-**Question 3**
 ---
--- Paste Question 3 here
 
-```sql
--- Paste your SQL code below for Question 3
-```
+### 🔹 Scenario 2: Hospital Database
+Design a database for patient management, appointments, medical records, and billing.
 
-**Output:**
+**User Requirements:**
+- Patient details including contact and insurance.
+- Doctors and their departments, contact info, specialization.
+- Appointments with reason, time, patient-doctor link.
+- Medical records with treatments, diagnosis, test results.
+- Billing and payment details for each appointment.
 
-![Output3](output.png)
-
-**Question 4**
 ---
--- Paste Question 4 here
 
-```sql
--- Paste your SQL code below for Question 4
-```
+## 📝 Tasks:
+1. Identify entities, relationships, and attributes.
+2. Draw the ER diagram using any tool (draw.io, dbdiagram.io, hand-drawn and scanned).
+3. Include:
+   - Cardinality & participation constraints
+   - Prerequisites for University OR Billing for Hospital
+4. Explain:
+   - Why you chose the entities and relationships.
+   - How you modeled prerequisites or billing.
 
-**Output:**
+# ER Diagram Submission 
 
-![Output4](output.png)
+## Scenario Chosen:
+ ### University
 
-**Question 5**
----
--- Paste Question 5 here
+## ER Diagram:
+![image](https://github.com/user-attachments/assets/b222eec9-eed2-41fa-b55a-1eb977d0b861)
 
-```sql
--- Paste your SQL code below for Question 5
-```
 
-**Output:**
+## Entities and Attributes:
+- ### Entity 1: USER
+**Attributes:** ID (Primary Key), NAME, PHNO, ADDRESS
+- ### Entity 2: STUDENT
+**Attributes:**  ID (Primary Key), REGNO, NAME, DOB, DEPT, YEAR, YEAR_ENROLLED, CREDITS
+- ### Entity 3: PROGRAM
+ **Attributes:** PROG_ID (Primary Key), PROG_NAME, CREDIT_POINTS
+- ### Entity 4: COURSE
+  **Attributes:**  ID (Primary Key), NAME, PREREQUEST, STATUS, ENROLLMENT
+- ### Entity 5: REGISTRATION
+**Attributes:**  REG_ID (Primary Key), STU_ID, DATE, TYPE ...
+...
 
-![Output5](output.png)
+## Relationships and Constraints:
+ ### Relationship 1 - MANAGEMENT
+- **Between:**  USER ↔ REGISTRATION
+- **Cardinality:**  N from USER to REGISTRATION
+- **Participation:**  Total on PATIENT, Partial on DOCTORS
+### Relationship 2 - ENROLL
+- **Between:** STUDENT ↔ PROGRAM
+- **Cardinality:** M:1 (Many Students per Program)
+**Participation:** Total on STUDENT, Partial on PROGRAM
+### Relationship 3 - CONTAINS
+- **Between:**  PROGRAM ↔ COURSE
+- **Cardinality:**  1:M from PROGRAM to COURSE
+- **Participation:**  Total on COURSE, Partial on PROGRAM
+### Relationship 4 - ATTEMPTS
+- **Between:** STUDENT ↔ COURSE
+- **Cardinality:** M:N
+- **Participation:** Partial on both sides
+### Relationship 5 - REGISTRATION
+- **Between:** STUDENT ↔ REGISTRATION
+- **Cardinality:** 1:N from STUDENT to REGISTRATION
+- **Participation:** Total on REGISTRATION, Partial on STUDENT
+### Relationship 6 - PREREQUEST
+- **Between:**  COURSE ↔ COURSE
+- **Cardinality:** 1:1 or M:1 (Optional prerequisite per course)
+- **Participation:** Optional on both sides ...
+...
 
-**Question 6**
----
--- Paste Question 6 here
-
-```sql
--- Paste your SQL code below for Question 6
-```
-
-**Output:**
-
-![Output6](output.png)
-
-**Question 7**
----
--- Paste Question 7 here
-
-```sql
--- Paste your SQL code below for Question 7
-```
-
-**Output:**
-
-![Output7](output.png)
-
-**Question 8**
----
--- Paste Question 8 here
-
-```sql
--- Paste your SQL code below for Question 8
-```
-
-**Output:**
-
-![Output8](output.png)
-
-**Question 9**
----
--- Paste Question 9 here
-
-```sql
--- Paste your SQL code below for Question 9
-```
-
-**Output:**
-
-![Output9](output.png)
-
-**Question 10**
----
--- Paste Question 10 here
-
-```sql
--- Paste your SQL code below for Question 10
-```
-
-**Output:**
-
-![Output10](output.png)
-
-## RESULT
-Thus, the SQL queries to implement DML commands have been executed successfully.
+## Extension - Prerequisite:
+...
+In the diagram, prerequisites are modeled using the PREREQUEST attribute inside the COURSE
+entity. This means a course can mention another course as its required prerequisite. This helps the
+university system check if a student is eligible to take a particular course based on past course
+completions. By including it as an attribute (not a separate relationship), the design stays simple
+and still supports course dependencies in the academic structure.
+...
+## Design Choices:
+- STUDENT and USER separated to distinguish academic and administrative roles. -PROGRAM
+and COURSE designed as core academic entities, linked by the CONTAINS relationship.
+- REGISTRATION used as a bridge between USER and STUDENT activity tracking.
+- ATTEMPTS relationship captures performance metrics across courses.
+- PREREQUEST allows course dependency modeling internally without a separate entity.
+## RESULT:
+**The ER model includes 6 relationships:**  CHECKUP, DETAILED_INFO_ABOUT_THE_PATIENT, OPERATION, REG_PATIENT, ADMIT_PATIENT, and DISCHARGE, each with defined cardinality and participation constraints connecting patients, doctors, departments, and billing details.
